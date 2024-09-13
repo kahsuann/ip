@@ -9,6 +9,7 @@ public class Susan {
     private Storage storage;
     private TaskList taskList;
     private Ui ui;
+    private String commandType;
 
     public Susan() {
         ui = new Ui();
@@ -22,9 +23,14 @@ public class Susan {
     public String getResponse(String input) {
         try {
             Command c = Parser.parse(input);
+            commandType = c.getClass().getSimpleName();
             return c.execute(taskList, ui, storage);
         } catch (SusanException e) {
             return ui.showError(e.getMessage());
         }
+    }
+
+    public String getCommandType() {
+        return commandType;
     }
 }

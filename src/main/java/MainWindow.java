@@ -41,9 +41,10 @@ public class MainWindow extends AnchorPane {
     private void handleUserInput() {
         String input = userInput.getText();
         String response = susan.getResponse(input);
+        String commandType = susan.getCommandType();
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
-                DialogBox.getSusanDialog(response, susanImage)
+                DialogBox.getSusanDialog(response, susanImage, commandType)
         );
         userInput.clear();
     }
